@@ -3,6 +3,9 @@ import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import Cart from "./pages/cart/Cart";
 import Footer from "./components/footer/Footer";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+import Reset from "./pages/auth/Reset";
 
 function App() {
   return (
@@ -11,6 +14,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/reset" element={<Reset/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>
