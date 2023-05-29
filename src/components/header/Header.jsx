@@ -3,6 +3,9 @@ import style from'./Header.module.scss'
 import {FaShoppingCart, FaTimes} from 'react-icons/fa'
 import {HiOutlineMenuAlt3} from 'react-icons/hi'
 import { useState } from 'react'
+import { signOut } from 'firebase/auth'
+import { auth } from '../../firebase/config'
+import { toast } from 'react-toastify'
 
 export default function Header() {
 
@@ -10,6 +13,10 @@ export default function Header() {
   const hideMenu = () => setShowMenu(false)
 
   const activateLink = ({isActive}) => isActive?`${style.active}`:''
+  const logoutHandle = () => {
+    signOut(auth).then(()=>toast.success('Logout successful'))
+    .catch(error=>toast.error(error.message))
+  }
 
   const logo = (
   <div className={style.logo}>
@@ -49,6 +56,7 @@ export default function Header() {
           <NavLink className={activateLink} to='/login'>Login</NavLink>
           <NavLink className={activateLink} to='/register'>Register</NavLink>
           <NavLink className={activateLink} to='/order-history'>My Orders</NavLink>
+          <NavLink to='/' onClick={logoutHandle}>Logout</NavLink>
         </span>
         {cart}
        </div>
