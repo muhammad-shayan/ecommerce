@@ -8,6 +8,8 @@ import Register from "./pages/auth/Register";
 import Reset from "./pages/auth/Reset";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
+import { AdminOnlyRoutes } from "./components/adminOnlyRoutes/AdminOnlyRoutes";
+import Admin from "./pages/admin/Admin";
 
 function App() {
   return (
@@ -20,6 +22,11 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/reset" element={<Reset/>}/>
+          <Route path="/admin/*" element={
+            <AdminOnlyRoutes>
+              <Admin/>
+            </AdminOnlyRoutes>
+          }/>
         </Routes>
         <Footer/>
       </BrowserRouter>

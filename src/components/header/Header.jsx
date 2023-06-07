@@ -9,6 +9,7 @@ import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { reset, set_active_user } from '../../features/authSlice'
 import { ShowOnLogin, ShowOnLogout } from '../hiddenLinks/hiddenLinks'
+import { AdminOnlyLinks } from '../adminOnlyRoutes/AdminOnlyRoutes'
 
 
 export default function Header() {
@@ -78,6 +79,9 @@ export default function Header() {
             {logo}
             <FaTimes onClick={hideMenu} size={28}/>
           </li>
+          <li><AdminOnlyLinks>
+              <Link to='/admin/home'><button className="--btn --btn-primary">Admin</button></Link>
+            </AdminOnlyLinks></li>
           <li><NavLink className={activateLink} to='/'>Home</NavLink></li>
           <li><NavLink className={activateLink} to='/contact'>Contact Us</NavLink></li>
         </ul>
