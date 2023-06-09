@@ -6,16 +6,19 @@ import { useEffect, useState } from 'react'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../../firebase/config'
 import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { reset, set_active_user } from '../../features/authSlice'
 import { ShowOnLogin, ShowOnLogout } from '../hiddenLinks/hiddenLinks'
 import { AdminOnlyLinks } from '../adminOnlyRoutes/AdminOnlyRoutes'
+import { CALCULATE_TOTAL_QUANTITY, selectCartTotalQuantity } from '../../features/cartSlice'
 
 
 export default function Header() {
 
   const [showMenu,setShowMenu] = useState(false)
   const [displayName,setDisplayName] = useState('')
+  const cartQuantity = useSelector(selectCartTotalQuantity)
+
   const dispatch = useDispatch()
   const hideMenu = () => setShowMenu(false)
 
@@ -49,6 +52,10 @@ export default function Header() {
     });
   },[dispatch,displayName])
 
+  useEffect(()=>{
+    dispatch(CALCULATE_TOTAL_QUANTITY())
+  },[dispatch])
+
   const logo = (
   <div className={style.logo}>
     <Link to='/'>
@@ -63,7 +70,7 @@ export default function Header() {
       <Link to='/cart'>
         Cart
         <FaShoppingCart size={20}/>
-        <p>0</p> 
+        <p>{cartQuantity}</p> 
       </Link>
     </span>
   )

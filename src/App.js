@@ -10,6 +10,13 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { AdminOnlyRoutes } from "./components/adminOnlyRoutes/AdminOnlyRoutes";
 import Admin from "./pages/admin/Admin";
+import ProductDetails from "./components/products/productDetails/ProductDetails";
+import CheckoutDetails from "./pages/checkout/CheckoutDetails";
+import Checkout from "./pages/checkout/Checkout";
+import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
+import OrderHistory from "./pages/orderHistory/OrderHistory";
+import OrderDetails from "./pages/orderDetails/OrderDetails";
+import ReviewProducts from "./components/reviewProducts/ReviewProducts";
 
 function App() {
   return (
@@ -27,6 +34,14 @@ function App() {
               <Admin/>
             </AdminOnlyRoutes>
           }/>
+          <Route path="/product-details/:id" element={<ProductDetails/>}/>
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/checkout-details" element={<CheckoutDetails/>}/>
+          <Route path="/checkout" element={<Checkout/>}/>
+          <Route path="/checkout-success" element={<CheckoutSuccess/>}/>
+          <Route path="/order-history" element={<OrderHistory/>}/>
+          <Route path="/order-details/:id" element={<OrderDetails/>}/>
+          <Route path="/review-product/:id" element={<ReviewProducts/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>
