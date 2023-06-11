@@ -16,9 +16,9 @@ if(process.env.NODE_ENV === 'production'){
     })
 }
 
-app.get('/',(req,res) => {
-    res.send('Welcome to eCommerce App!')
-})
+// app.get('/',(req,res) => {
+//     res.send('Welcome to eCommerce App!')
+// })
 
 const array = [];
 const calculateOrderAmount = (items) => {
@@ -61,6 +61,6 @@ app.post('/create-payment-intent', async (req,res) => {
     })
 })
 
-const PORT = 5000
+const PORT = process.env.port || 5000
 
 app.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
